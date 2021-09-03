@@ -1,2 +1,2 @@
 # Simple shooter simulation using three.js and cannon.js
-Have a look :- https://three-cannon-shooter.herokuapp.com/
+Try it out :- https://three-cannon-shooter.herokuapp.com/
