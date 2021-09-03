@@ -53,11 +53,11 @@ export const makeScene = (blocker, instructions) => {
   ground.physicsObj.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
   world.addBody(ground.physicsObj);
 
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 6; j++) {
-      for (let k = 0; k < 5; k++) {
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      for (let k = 0; k < 2; k++) {
         let box = createBox(2, 2, 2, -8 + i * 2, 1 + j * 2, k * 2, 5);
-        box.name = `box-${i}${j}${k}`;
+        // box.name = `box-${i}${j}${k}`;
         objects.push(box);
       }
     }
@@ -84,7 +84,7 @@ export const makeScene = (blocker, instructions) => {
   });
 
   const timeStep = 1 / 60; // seconds
-  let lastCallTime;
+  // let lastCallTime;
 
   const animate = function () {
     requestAnimationFrame(animate);
@@ -98,14 +98,14 @@ export const makeScene = (blocker, instructions) => {
       controls.moveRight(movementVelocity);
     }
     // world.step(timeStep);
-    const time = performance.now() / 1000; // seconds
-    if (!lastCallTime) {
-      world.step(timeStep);
-    } else {
-      const dt = time - lastCallTime;
-      world.step(timeStep, dt);
-    }
-    lastCallTime = time;
+    // const time = performance.now() / 1000; // seconds
+    // if (!lastCallTime) {
+    world.step(timeStep);
+    // } else {
+    // const dt = time - lastCallTime;
+    // world.step(timeStep, dt);
+    // }
+    // lastCallTime = time;
     update(objects);
     stats.update();
     renderer.render(scene, camera);
