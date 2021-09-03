@@ -2,15 +2,15 @@ import * as THREE from "three";
 import * as CANNON from "cannon-es";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 import Stats from "three/examples/jsm/libs/stats.module";
-import floor from "../images/woodenFloor.jpg";
-import crate from "../images/crate.jpg";
-import football from "../images/moon.jpg";
+// import floor from "../images/woodenFloor.jpg";
+// import crate from "../images/crate.jpg";
+// import football from "../images/moon.jpg";
 
-const woodTex = new THREE.TextureLoader().load(floor);
-const boxTex = new THREE.TextureLoader().load(crate);
-const ballTex = new THREE.TextureLoader().load(football);
-ballTex.wrapS = THREE.RepeatWrapping;
-ballTex.wrapT = THREE.RepeatWrapping;
+// const woodTex = new THREE.TextureLoader().load(floor);
+// const boxTex = new THREE.TextureLoader().load(crate);
+// const ballTex = new THREE.TextureLoader().load(football);
+// ballTex.wrapS = THREE.RepeatWrapping;
+// ballTex.wrapT = THREE.RepeatWrapping;
 
 let scene,
   // origin = new THREE.Vector3(0, 0, 0),
@@ -40,7 +40,7 @@ export const makeScene = (blocker, instructions) => {
     new THREE.PlaneGeometry(100, 100),
     new THREE.MeshPhongMaterial({
       side: THREE.DoubleSide,
-      map: woodTex,
+      // map: woodTex,
     })
   );
   ground.rotation.x = Math.PI / 2;
@@ -77,7 +77,7 @@ export const makeScene = (blocker, instructions) => {
   );
   world.addContactMaterial(ground_ground);
 
-  scene.add(alight, dlight, ground);
+  scene.add(dlight, ground);
   objects.forEach((mesh) => {
     world.addBody(mesh.physicsObj);
     scene.add(mesh);
@@ -187,7 +187,7 @@ export const makeScene = (blocker, instructions) => {
     dlight = new THREE.SpotLight("white");
     dlight.position.set(0, 50, 30);
     dlight.castShadow = true;
-    alight = new THREE.AmbientLight("grey");
+    // alight = new THREE.AmbientLight("grey");
     clock = new THREE.Clock();
     instructions.addEventListener("click", (e) => {
       controls.lock();
@@ -205,7 +205,7 @@ export const makeScene = (blocker, instructions) => {
   function createBox(length, width, height, x, y, z, mass) {
     const box = new THREE.Mesh(
       new THREE.BoxGeometry(length, width, height),
-      new THREE.MeshPhongMaterial({ map: boxTex })
+      new THREE.MeshPhongMaterial()
     );
     box.position.set(x, y, z);
     box.castShadow = true;
@@ -221,7 +221,7 @@ export const makeScene = (blocker, instructions) => {
   function createBall(rad, x, y, z, mass) {
     const ball = new THREE.Mesh(
       new THREE.IcosahedronGeometry(rad, 10),
-      new THREE.MeshPhongMaterial({ map: ballTex })
+      new THREE.MeshPhongMaterial()
     );
     ball.position.set(x, y, z);
     ball.castShadow = true;
