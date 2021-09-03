@@ -84,7 +84,7 @@ export const makeScene = (blocker, instructions) => {
   });
 
   const timeStep = 1 / 60; // seconds
-  // let lastCallTime;
+  let lastCallTime;
 
   const animate = function () {
     requestAnimationFrame(animate);
@@ -98,14 +98,14 @@ export const makeScene = (blocker, instructions) => {
       controls.moveRight(movementVelocity);
     }
     // world.step(timeStep);
-    // const time = performance.now() / 1000; // seconds
-    // if (!lastCallTime) {
-    world.step(timeStep);
-    // } else {
-    // const dt = time - lastCallTime;
-    // world.step(timeStep, dt);
-    // }
-    // lastCallTime = time;
+    const time = performance.now() / 1000; // seconds
+    if (!lastCallTime) {
+      world.step(timeStep);
+    } else {
+      const dt = time - lastCallTime;
+      world.step(timeStep, dt);
+    }
+    lastCallTime = time;
     update(objects);
     stats.update();
     renderer.render(scene, camera);
