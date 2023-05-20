@@ -205,7 +205,7 @@ export const makeScene = (blocker, instructions) => {
   function createBox(length, width, height, x, y, z, mass) {
     const box = new THREE.Mesh(
       new THREE.BoxGeometry(length, width, height),
-      new THREE.MeshPhongMaterial()
+      new THREE.MeshPhongMaterial({color: "#ffaaaa"})
     );
     box.position.set(x, y, z);
     box.castShadow = true;
@@ -221,7 +221,7 @@ export const makeScene = (blocker, instructions) => {
   function createBall(rad, x, y, z, mass) {
     const ball = new THREE.Mesh(
       new THREE.IcosahedronGeometry(rad, 10),
-      new THREE.MeshPhongMaterial()
+      new THREE.MeshPhongMaterial({color: "#aaaaff"})
     );
     ball.position.set(x, y, z);
     ball.castShadow = true;
